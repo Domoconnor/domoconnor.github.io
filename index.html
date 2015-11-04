@@ -1,171 +1,19 @@
 <!DOCTYPE html>
-<!-- saved from url=(0024)http://domoconnor.co.uk/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <title>Dom O'Connor</title>
- 
-<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script async="" src="./Dom O'Connor_files/cloudflare.min.js"></script><script type="text/javascript">
-//<![CDATA[
-try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"6c5df77c686d69ed553c9ea747fff256",petok:"d939ef53767482665f7037ca7814faa151a94d49-1446647369-1800",zone:"domoconnor.co.uk",rocket:"0",apps:{"ga_key":{"ua":"UA-34521770-1","ga_bs":"2"}}}];!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=b0bfc08c34/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
-//]]>
-</script>
-<link rel="stylesheet" href="./Dom O'Connor_files/skeleton.css">
-<link rel="stylesheet" href="./Dom O'Connor_files/layout.css">
-<link rel="stylesheet" href="./Dom O'Connor_files/css.css">
-<link href="./Dom O'Connor_files/css" rel="stylesheet" type="text/css">
-<script src="./Dom O'Connor_files/jquery.min.js"></script>
-<script src="./Dom O'Connor_files/jquery.easing.min.js"></script>
-<script type="text/javascript">
-	function pulsate(element) {
-	    $(element || this).animate({ opacity: 0}, 1000, 'easeOutCirc', function() {
-		    $(element || this).css({"padding":"0px", "margin":0});
-		    $(this).animate({ 
-		      	opacity: 0.5, 
-		      	"padding": "25px", 
-		      	"margin-top": "-25px",
-		      	"margin-left": "-25px" }, 
-		      	1500, 
-		      	'easeOutCirc',
-		      	pulsate);
-		    });
-	}
+<link rel="stylesheet" href="skeleton.css">
+<link rel="stylesheet" href="layout.css">
+<link rel="stylesheet" href="css.css">
+<link href="/css" rel="stylesheet" type="text/css">
 
-	var starCount = 0;
-	$(function() {
-	    pulsate('#pulse');
-
-	    var ctx = document.getElementById('canvas').getContext("2d");
-		ctx.canvas.width  = window.innerWidth;
-		ctx.canvas.height = $("#canvas").height();
-		var stars = genStars(ctx);
-		var tracks = new Track(0);
-		draw(ctx, stars);
-		
-		/*setInterval( function() {
-		 twinkle(ctx, stars, tracks);
-		 draw(ctx, stars);
-		},1);*/
-	});
-
-
-	/**
-	 * Create a set of points that the stars will be located and assign them an opacity.
-	 * @param  {canvas} ctx
-	 * @return {Array} stars
-	 */
-	function genStars(ctx){
-		stars = new Array();
-
-		for (var i = 0; i < 1000; i++) {
-			var opacity = Math.random();
-			var x = Math.floor((Math.random() * ctx.canvas.width));
-			var y = Math.floor((Math.random() * ctx.canvas.height));
-			stars.push(new Star(x, y, opacity, false, Math.random()* (1 - 0.2) + 0.2));
-
-		};
-
-		return stars
-	}
-
-	/**
-	 * Draw loop
-	 * @param  {canvas} ctx
-	 * @param  {Array} stars
-	 * @return {Null}
-	 */
-	function draw(ctx, stars) {
-		ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height)
-		for (i=0;i<stars.length;i++) {
-			ctx.globalAlpha = stars[i]['opacity'];
-			ctx.fillStyle = stars[i].colour;
-			ctx.beginPath();
-			ctx.arc(stars[i]['x'],stars[i]['y'], stars[i]['radius'],0,2*Math.PI);
-			ctx.fill()
-		};
-	}
-
-	function drawStar(ctx, star){
-		ctx.clearRect(star.x-star.radius, star.y-star.radius,star.radius, star.radius)
-		ctx.globalAlpha = star['opacity'];
-		ctx.fillStyle = star.colour;
-		ctx.beginPath();
-		ctx.arc(star['x'],star['y'], star['radius'],0,2*Math.PI);
-		ctx.fill();
-	}
-	/**
-	 * Slowly make the stars twinkle by increasing and decreasing the opacity
-	 * @param  {Array} stars
-	 * @return {Null}
-	 */
-	function twinkle(ctx, stars, track){
-		starCount = track.currentStar;
-		if (starCount == stars.length - 1) {
-			track.currentStar = 0
-		} else {
-			track.currentStar++;
-		}
-		
-		if(!stars[starCount].twinkle) {
-			currentStar = stars[starCount];
-			currentStar.twinkle = true;
-			prevOpacity = currentStar.opacity;
-			currentStar.colour = "#ff0000";
-			currentStar.twinkle = false;
-		} else {
-			twinkle(ctx, stars);
-		}
-	}
-
-	/**
-	 * Defines a star class
-	 * @param {Number} x
-	 * @param {Number} y
-	 * @param {Number} opacity
-	 * @param {Number} twinkle
-	 */
-	function Star(x,y,opacity,twinkle, radius ){
-		this.x = x;
-		this.y = y;
-		this.opacity = opacity;
-		this.originalOpacity = opacity
-		this.twinkle = twinkle;
-		this.twinkleDirection = null;
-		this.radius = radius
-		this.colour = "#fff";
-	}
-
-	function Track(currentStar){
-		this.currentStar = currentStar
-	}
-
-
-	</script>
-<script type="text/javascript">
-/* <![CDATA[ */
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-34521770-1']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-
-(function(b){(function(a){"__CF"in b&&"DJS"in b.__CF?b.__CF.DJS.push(a):"addEventListener"in b?b.addEventListener("load",a,!1):b.attachEvent("onload",a)})(function(){"FB"in b&&"Event"in FB&&"subscribe"in FB.Event&&(FB.Event.subscribe("edge.create",function(a){_gaq.push(["_trackSocial","facebook","like",a])}),FB.Event.subscribe("edge.remove",function(a){_gaq.push(["_trackSocial","facebook","unlike",a])}),FB.Event.subscribe("message.send",function(a){_gaq.push(["_trackSocial","facebook","send",a])}));"twttr"in b&&"events"in twttr&&"bind"in twttr.events&&twttr.events.bind("tweet",function(a){if(a){var b;if(a.target&&a.target.nodeName=="IFRAME")a:{if(a=a.target.src){a=a.split("#")[0].match(/[^?=&]+=([^&]*)?/g);b=0;for(var c;c=a[b];++b)if(c.indexOf("url")===0){b=unescape(c.split("=")[1]);break a}}b=void 0}_gaq.push(["_trackSocial","twitter","tweet",b])}})})})(window);
-/* ]]> */
-</script>
-<style>#content > #center > .dose > .dosesingle,
-#content > #right > .dose > .dosesingle
-{display:none !important;}</style><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style></head>
-<body>
  
 <div class="gradient"></div>
 <canvas id="canvas" width="1440" height="600"></canvas>
 <div class="container">
 <div class="top">
 <div class="wrap">
-<img src="./Dom O'Connor_files/photo.jpg">
+<img src="photo.jpg">
 <div class="name">Dom O'Connor</div>
 <div class="sub">Web Developer</div>
  
@@ -176,7 +24,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <div class="sixteen columns alpha">
 <h2>My Recent Projects</h2>
 <div class="eight columns alpha project">
-<img src="./Dom O'Connor_files/pillo.png">
+<img src="pillo.png">
 <div class="description">
 <h3>Pillo</h3>
 <p> Pillo is a vintage and handmade store based in London. They wanted a website to help showcase their products and show their quality.</p>
@@ -184,7 +32,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 </div>
 </div>
 <div class="eight columns project omega">
-<img src="./Dom O'Connor_files/todo.png">
+<img src="todo.png">
 <div class="description">
 <h3>todo</h3>
 <p>todo is a work in progress colaborative to do list app written in node and react. It's main aim is to enable small teams to quickly and easily get an overview of who's doing what. </p>
@@ -193,5 +41,3 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 </div>
 </div>
 </div>
-
-<div id="window-resizer-tooltip"><a href="http://domoconnor.co.uk/#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth"></span> x <span class="tooltipHeight" id="winHeight"></span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth"></span> x <span class="tooltipHeight" id="vpHeight"></span></div></body></html>
